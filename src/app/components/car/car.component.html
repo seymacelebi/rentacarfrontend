@@ -1,7 +1,17 @@
 <div  *ngIf="dataLoaded==false" class="spinner-border text-primary" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
-<table *ngIf="dataLoaded==true"class="table">
+
+  <div class="mb-3">
+    <label for="filterText" class="form-label">Email address</label>
+    <input type="text" [(ngModel)]="filterText"   class="form-control" id="filterText" placeholder="arama ifadesi giriniz">
+  </div>
+  
+  <div  *ngIf="filterText" class="alert alert-success">
+ {{filterText}} aradınız
+  </div>
+
+  <table *ngIf="dataLoaded==true"class="table">
     <thead>
         <tr>
             <th>Id</th>
@@ -10,16 +20,18 @@
             <th>Model Yılı</th>
             <th>Günlük Ücret</th>
             <th>Tanım</th>
+            <th></th>
         </tr>
     </thead>
-    <tr *ngFor="let car of cars">
-        <td>{{car.id}}</td>
-        <td>{{car.brandId}}</td>
-        <td>{{car.colorId}}</td>
-        <td>{{car.modelYear}}</td>
-        <td>{{car.dailyPrice}}</td>
-        <td>{{car.descriptions}}</td>
-        
-
-    </tr>
+    <tbody>
+        <tr *ngFor="let car of cars |filterPipe:filterText">
+            <td>{{car.id}}</td>
+            <td>{{car.brandId}}</td>
+            <td>{{car.colorId}}</td>
+            <td>{{car.modelYear}}</td>
+            <td>{{car.dailyPrice | uppercase}}</td>
+            <td>{{car.descriptions}}</td>
+            <td><button (click)="addToCart()" type="button" class="btn btn-success">Sepete Ekle</button></td>  
+        </tr>
+    </tbody>
 </table>
