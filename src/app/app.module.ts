@@ -11,16 +11,23 @@ import { NaviComponent } from './components/navi/navi.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { RentalComponent } from './components/rental/rental.component';
 import { ColorComponent } from './components/color/color.component';
-import { CarDetailsComponent } from './components/cardetail/cardetail.component';
+
 import { VatAddedPipe } from './pipes/vat-added.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterPipePipe } from './pipes/filter-pipe.pipe';
+import { DatePipe } from '@angular/common';
 
 import {ToastrModule} from "ngx-toastr";
 import { CartSummaryComponent } from './components/cart-summary/cart-summary.component';
 import { CarAddComponent } from './components/car-add/car-add.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { BrandAddComponent } from './components/brand-add/brand-add.component';
+import { ColorAddComponent } from './components/color-add/color-add.component';
+import { PaymentComponent } from './components/payment/payment.component';
+import { CustomerDetailComponent } from './components/customer-detail/customer-detail.component';
+import { RegisterComponent } from './components/register/register.component';
+
 
 @NgModule({
   declarations: [
@@ -31,12 +38,17 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     CustomerComponent,
     RentalComponent,
     ColorComponent,
-    CarDetailsComponent,
     VatAddedPipe,
     FilterPipePipe,
     CartSummaryComponent,
     CarAddComponent,
     LoginComponent,
+    BrandAddComponent,
+    ColorAddComponent,
+    PaymentComponent,
+    CustomerDetailComponent,
+    RegisterComponent,
+
    
   ],
   imports: [
@@ -49,7 +61,8 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     ToastrModule.forRoot({
       positionClass:"toast-bottom-right"
 
-    })
+    }),
+   
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true }
